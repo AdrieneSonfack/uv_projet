@@ -19,6 +19,7 @@ export class UserComponent implements OnInit{
    photo: string = 'assets/img/default.png'; // image par défaut
   role!:string;
   id:any;
+   user: any = {}; // Stocke les infos utilisateur
   notifications: any[] =[];
   projects:any[]=[];
 isProjectsCollapsed: boolean = true;
@@ -29,6 +30,7 @@ isProjectsCollapsed: boolean = true;
 
   ngOnInit(): void {
     this.loadNotifications();
+    this.loadUserProfilePhoto();
     this.route.queryParams.subscribe(params => {
       this.token=params['token'];
       this.user_name=params['name'];
@@ -55,11 +57,12 @@ isProjectsCollapsed: boolean = true;
         complete: () => {
          // this.isLoading = false;
         }
+
       });
 
       this.getProjectQueryParams(this.projects)
   }
-   loadUserProfilePhoto(): void {
+ loadUserProfilePhoto(): void {
     this.userService.getUserProfile().subscribe({
       next: (userData) => {
         if (userData.photo) {
@@ -76,6 +79,7 @@ isProjectsCollapsed: boolean = true;
       }
     });
   }
+
 
   getProjectQueryParams(project: any): any {
     return {
@@ -125,6 +129,17 @@ isProjectsCollapsed: boolean = true;
   }
 
 
+get photoUrl(): string {
+    if (!this.user.photo) {
+      return 'assets/img/default.png'; // image par défaut locale
+    }
+    // Retourne l'URL complète si c'est une URL, sinon construit le chemin complet
+    if (this.user.photo.startsWith('http')) {
+      return this.user.photo;
+    }
+    return `http://localhost:8000/${this.user.photo}`; // exemple: 'images/nomfichier.jpg'
+  }
+
   deconnexion(){
     const result = confirm('voulez vous vous deconnecter');
     if(result){
@@ -145,4 +160,6 @@ isProjectsCollapsed: boolean = true;
 
   }
 }
+
+
 }

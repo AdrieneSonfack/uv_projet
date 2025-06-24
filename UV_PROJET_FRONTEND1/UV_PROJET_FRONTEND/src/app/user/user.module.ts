@@ -13,7 +13,7 @@ import { DocumentPopupComponent } from './user-components/document-popup/documen
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 import { CompleteDialogComponent } from './user-components/complete-dialog/complete-dialog.component';
-
+import { HelpComponent } from './user-components/help/help.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { CompleteDialogComponent } from './user-components/complete-dialog/compl
     UserComponent,
     ProjectDetailComponent,
     DocumentPopupComponent,
-    CompleteDialogComponent
+    CompleteDialogComponent,
+      HelpComponent
   ],
   imports: [
     CommonModule,

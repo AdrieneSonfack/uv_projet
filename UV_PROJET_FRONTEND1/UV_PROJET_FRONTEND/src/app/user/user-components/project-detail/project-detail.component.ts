@@ -89,11 +89,11 @@ export class ProjectDetailComponent {
       this.documents = response;
 
     });
-   console.log("ID de projet transmis :", this.id);
-this.collaborateurService.getCollaborateurByProject(this.id).subscribe({
-  next: (data) => console.log("Collaborateurs récupérés :", data),
-  error: (err) => console.error("Erreur :", err)
-});
+      this.collaborateurService.getCollaborateursByProject(this.id).subscribe(response => {
+      this.collaborators = response;
+
+    });
+
 
 
     this.actionCellRenderer();

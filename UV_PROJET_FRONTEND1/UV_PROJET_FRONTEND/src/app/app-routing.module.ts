@@ -14,7 +14,7 @@ import { EditNameComponent } from './components/profile/edit-name.component';
 import { EditEmailComponent } from './components/profile/edit-email.component';
 import { EditPasswordComponent } from './components/profile/edit-password.component';
 import { EditPhotoComponent } from './components/profile/edit-photo.component';
-
+import { HelpComponent } from './user/user-components/help/help.component';
 const routes: Routes = [
 
   {
@@ -33,6 +33,7 @@ const routes: Routes = [
     ],
       //canActivate: [userGuard]
   },
+   { path: 'helpUser', component: HelpComponent },
   {
       path: 'profile',
       component: ProfileComponent,
