@@ -50,8 +50,8 @@ class TblCollaborateurController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nom_collab'=>'required|unique:tbl_collaborateurs,nom_collab|max:255',
-            'email_collab'=>'required|unique:tbl_collaborateurs,email_collab|max:255',
+            'nom_collab'=>'required|max:255',
+            'email_collab'=>'required|email|max:255',
 
             'tbl_projet_id' => 'required|exists:tbl_projets,id',
 

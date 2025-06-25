@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('tbl_collaborateurs', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_collab')->unique();
-            $table->string('email_collab')->unique();
-             $table->foreignIdFor(TblProjet::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->string('nom_collab');
+            $table->string('email_collab');
+             $table->foreignIdFor(TblProjet::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['nom_collab','email_collab','tbl_projet_id']);
         });
     }
 
