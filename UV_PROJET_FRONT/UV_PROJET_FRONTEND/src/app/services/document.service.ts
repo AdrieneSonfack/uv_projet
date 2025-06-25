@@ -27,6 +27,9 @@ export class DocumentService {
   deleteDocument(id:string):Observable<any>{
     return this.http.delete(`http://localhost:8000/api/ressources/documents/${id}`);
   }
+  deleteDocumentByid(id:string):Observable<any>{
+    return this.http.delete(`http://localhost:8000/api/ressources/documents/${id}`);
+  }
 
   updateDocument(id:string ,nom_doc:string , lien_doc:string , type_doc:string, resume:string, tbl_projet_id:string, user_id:string):Observable<any>{
     return this.http.put<any>(`http://localhost:8000/api/ressources/documents/${id}`, {nom_doc , lien_doc , type_doc, resume, tbl_projet_id, user_id});

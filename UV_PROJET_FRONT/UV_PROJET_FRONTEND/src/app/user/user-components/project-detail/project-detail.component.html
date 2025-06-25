@@ -54,8 +54,14 @@
                         <div class="service-box">
                           <h4>Documents Related</h4>
                           <div class="download-catalog">
-                            <a *ngFor="let document of documents | slice:0:(isExpanded ? documents.length : 4)" href="#">
-                              <i class="bi bi-filetype-pdf"></i><span (click)="$event.preventDefault(); openDocument(document.lien_doc)">{{ document.nom_doc }}</span>
+                            <a *ngFor="let document of documents | slice:0:(isExpanded ? documents.length : 4)" class="document-item d-flex justify-content-between align-items-center" href="#">
+                              <div>
+                                <i class="bi bi-filetype-pdf"></i>
+                                <span (click)="$event.preventDefault(); openDocument(document.lien_doc)" class="document-link">{{ document.nom_doc }}</span>
+                              </div>
+                              <button class="btn btn-sm btn-danger" (click)="confirmDeleteDocument(document)">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
                             </a>
                           </div>
                           <div *ngIf="documents.length > 4" class="show-more" (click)="toggleExpand()">
@@ -63,6 +69,7 @@
                             <span>{{ isExpanded ? 'Show Less' : 'Show More' }}</span>
                           </div>
                         </div>
+
                         <div class="service-box">
                           <h4>Collaborators Related</h4>
                           <div class="download-catalog">

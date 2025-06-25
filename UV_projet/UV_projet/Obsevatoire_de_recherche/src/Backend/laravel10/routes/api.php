@@ -212,6 +212,7 @@ Route::prefix('usecases')->group(function () {
     Route::prefix('submit')->controller(SoumissionController::class)->group(function(){
         Route::post('/{id}', 'submitProject')->middleware('web');
     });
+    
 
 });
 

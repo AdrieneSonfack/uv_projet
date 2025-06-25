@@ -120,9 +120,11 @@ export class ProjectDetailComponent {
   }
 
   openDocument(link:any){
-    let fullPath=`${'http://localhost:8000'}${link}`
+    let fullPath=`${link}`
     window.open(fullPath, '_blank', 'noopener,noreferrer');
   }
+
+  
 
   submitProject() {
     this.submitService.submitProject(this.id).subscribe({
@@ -190,6 +192,27 @@ export class ProjectDetailComponent {
   getFullImageUrl(imagePath: string): string {
     return `${'http://localhost:8000'}${imagePath}`;
   }
+
+  confirmDeleteDocument(document: any) {
+  const confirmed = window.confirm(`Cette action est irréversible, voulez-vous vraiment supprimer votre document "${document.nom_doc}" ?`);
+    if (confirmed) {
+      this.deleteDocumentByid(document.id);
+    }
+  }
+
+  deleteDocumentByid(id:string){
+  this.documentService.deleteDocument(id).subscribe({
+    next: () => {
+      this.documents = this.documents.filter(document => document.id !== id);
+      this.openCompleteDialog("Votre document a été supprimé avec succès.");
+    },
+      error: err => {
+        console.error("Erreur lors de la suppression du document", err);
+        alert("Une erreur s'est produite lors de la suppression du document.");
+      }
+    });
+  }
+
 
   actionCellRenderer() {
     let status = this.projectStatus;
